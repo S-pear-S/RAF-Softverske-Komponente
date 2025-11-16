@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/cetvrtaImpl" />
+            <option value="$PROJECT_DIR$/drugaImpl" />
+            <option value="$PROJECT_DIR$/drugaImplm" />
+            <option value="$PROJECT_DIR$/prvaImpl" />
+            <option value="$PROJECT_DIR$/spec" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/testApp" />
+            <option value="$PROJECT_DIR$/trecaImpl" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
