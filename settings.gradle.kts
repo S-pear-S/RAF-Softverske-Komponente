@@ -4,9 +4,7 @@ plugins {
 rootProject.name = "KomponenteProjekatPrvi"
 include("spec")
 include("prvaImpl")
-include("test")
 include("drugaImpl")
-include("drugaImplm")
 include("testApp")
 include("trecaImpl")
-include("cetvrtaImpl")
+include("calculations")

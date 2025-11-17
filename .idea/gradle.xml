@@ -9,12 +9,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/cetvrtaImpl" />
+            <option value="$PROJECT_DIR$/calculations" />
             <option value="$PROJECT_DIR$/drugaImpl" />
-            <option value="$PROJECT_DIR$/drugaImplm" />
             <option value="$PROJECT_DIR$/prvaImpl" />
             <option value="$PROJECT_DIR$/spec" />
-            <option value="$PROJECT_DIR$/test" />
             <option value="$PROJECT_DIR$/testApp" />
             <option value="$PROJECT_DIR$/trecaImpl" />
           </set>

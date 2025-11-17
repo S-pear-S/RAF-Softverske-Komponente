@@ -15,10 +15,16 @@ repositories {
 dependencies {
     implementation(project(":spec"))
     runtimeOnly(project(":prvaImpl"))
-    runtimeOnly(project(":drugaImplm"))
+    runtimeOnly(project(":drugaImpl"))
     runtimeOnly(project(":trecaImpl"))
-    runtimeOnly(project(":cetvrtaImpl"))
+
+    implementation(project(":calculations"))
+
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.github.ajalt.clikt:clikt:3.5.0")
+    implementation("com.opencsv:opencsv:5.9")
+    implementation("org.postgresql:postgresql:42.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.6")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
