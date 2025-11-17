@@ -1,4 +1,4 @@
 package testApp
 
-class Test {
+class Arguments {
 }

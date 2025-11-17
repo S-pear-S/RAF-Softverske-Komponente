@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation(project(":spec"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    implementation("com.openhtmltopdf:openhtmltopdf-pdfbox:1.0.10")
 }
 
 tasks.test {
