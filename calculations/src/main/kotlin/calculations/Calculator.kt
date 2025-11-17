@@ -7,7 +7,6 @@ import java.lang.IllegalArgumentException
 
 /**
  * A singleton utility object for performing calculations on report data.
- * This component is stateless and provides pure functions for data processing.
  */
 object Calculator {
 

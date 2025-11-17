@@ -7,7 +7,6 @@ class TxtReportImpl : ReportGenerator {
     override fun getFormat(): String = "txt"
 
     override fun generate(report: Report, stream: OutputStream) {
-        // Use a writer for efficient string handling, it automatically closes the stream.
         stream.bufferedWriter().use { writer ->
             report.elements.forEach { element ->
                 when (element) {
@@ -15,7 +14,6 @@ class TxtReportImpl : ReportGenerator {
                     is Table -> renderTable(element, writer)
                     is Summary -> renderSummary(element, writer)
                 }
-                // Add space between report elements for readability.
                 writer.newLine()
                 writer.newLine()
             }

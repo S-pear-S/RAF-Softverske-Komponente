@@ -41,7 +41,6 @@ class MarkdownReportImpl : ReportGenerator {
                 append(it.joinToString(" | "))
                 append(" |\n")
 
-                // Render separator line required for Markdown tables
                 append("|")
                 append(it.joinToString("|") { "---" })
                 append("|\n")

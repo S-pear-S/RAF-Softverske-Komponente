@@ -4,7 +4,6 @@ import com.opencsv.CSVReader
 import java.io.FileReader
 import java.sql.DriverManager
 
-// A simple data class to hold the loaded table data consistently.
 data class TableData(val header: List<String>, val rows: List<List<String>>)
 
 object DataLoader {
