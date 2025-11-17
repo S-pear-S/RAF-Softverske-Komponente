@@ -1,62 +1,66 @@
 package txt
 
-import spec.ReportInterface
-import java.io.File
+import spec.*
+import java.io.OutputStream
 
-class TxtReportImpl : ReportInterface {
+class TxtReportImpl : ReportGenerator {
+    override fun getFormat(): String = "txt"
 
-    override val implName: String = "TXT"
+    override fun generate(report: Report, stream: OutputStream) {
+        // Use a writer for efficient string handling, it automatically closes the stream.
+        stream.bufferedWriter().use { writer ->
+            report.elements.forEach { element ->
+                when (element) {
+                    is Title -> renderTitle(element, writer)
+                    is Table -> renderTable(element, writer)
+                    is Summary -> renderSummary(element, writer)
+                }
+                // Add space between report elements for readability.
+                writer.newLine()
+                writer.newLine()
+            }
+        }
+    }
 
-    override fun generateReport(
-        data: Map<String, List<String>>,
-        destination: String,
-        header: Boolean,
-        title: String?,
-        summary: String?
-    ) {
-        val columns = data.keys.toList()
-        val numRows = data.values.first().size
+    private fun renderTitle(title: Title, writer: java.io.BufferedWriter) {
+        writer.write(title.text)
+        writer.newLine()
+    }
 
-        // Calculate the max width for each column
-        val columnWidths = columns.map { column ->
-            val maxDataWidth = data[column]?.maxOfOrNull { it.length } ?: 0
-            maxOf(column.length, maxDataWidth)
+    private fun renderSummary(summary: Summary, writer: java.io.BufferedWriter) {
+        writer.write("Summary:")
+        writer.newLine()
+        summary.items.forEach { item ->
+            // Format as a simple list. The value can be of any type, so we convert it to string.
+            writer.write(" - ${item.label}: ${item.value}")
+            writer.newLine()
+        }
+    }
+
+    private fun renderTable(table: Table, writer: java.io.BufferedWriter) {
+        val columnWidths = table.header?.map { it.length }?.toMutableList() ?: mutableListOf()
+
+        val columnCount = table.rows.firstOrNull()?.size ?: table.header?.size ?: 0
+        while (columnWidths.size < columnCount) {
+            columnWidths.add(0)
         }
 
-        // Write to TXT file
-        File(destination).printWriter().use { writer ->
-            // Write title if provided
-            title?.let {
-                writer.println(it)
-                writer.println()
+        table.rows.forEach { row ->
+            row.forEachIndexed { index, cell ->
+                columnWidths[index] = maxOf(columnWidths[index], cell.toString().length)
             }
+        }
 
-            // Write the header row
-            columns.forEachIndexed { index, column ->
-                writer.print(column.padEnd(columnWidths[index] + 2))  // +2 for spacing
-            }
-            writer.println()
+        val format = columnWidths.joinToString(" | ") { "%-${it}s" } + "\n"
 
-            // Write dashes under the header
-            columnWidths.forEach { width ->
-                writer.print("-".repeat(width + 2))  // +2 for spacing
-            }
-            writer.println()
+        table.header?.let {
+            writer.write(String.format(format, *it.toTypedArray()))
+            val separator = columnWidths.joinToString("-+-") { "-".repeat(it) } + "\n"
+            writer.write(separator)
+        }
 
-            // Write each row of data, properly spaced
-            for (i in 0 until numRows) {
-                columns.forEachIndexed { index, column ->
-                    val cell = data[column]?.get(i) ?: ""
-                    writer.print(cell.padEnd(columnWidths[index] + 2))  // +2 for spacing
-                }
-                writer.println()
-            }
-
-            // Write summary if provided
-            summary?.let {
-                writer.println()
-                writer.println(it)
-            }
+        table.rows.forEach { row ->
+            writer.write(String.format(format, *row.map { it.toString() }.toTypedArray()))
         }
     }
 }

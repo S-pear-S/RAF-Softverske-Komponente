@@ -26,7 +26,7 @@ publishing {
             from(components["java"]) // If you're using the 'java' or 'kotlin' plugin
 
             groupId = "org.example"
-            artifactId = "drugaImplm"
+            artifactId = "drugaImpl"
             version = "1.0.0"
         }
     }
