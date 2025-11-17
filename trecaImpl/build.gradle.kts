@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.librepdf:openpdf:1.3.29")
     implementation(project(":spec"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
